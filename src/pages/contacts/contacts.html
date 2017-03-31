@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Contatos</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="getContacts()">
+        <ion-icon name="md-refresh"></ion-icon>
+      </button>
+
+      <button ion-button icon-only (click)="navBarHelp()">
+        <ion-icon name="md-help"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let contact of contacts" no-padding>
+      <ion-label>{{ contact.nome }}</ion-label>
+      <ion-checkbox checked="{{ selectAll }}" (ionChange)="addItem($event, contact)" color="primary"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab color="danger">
+      <ion-icon name="md-arrow-dropup"></ion-icon>
+    </button>
+
+    <ion-fab-list side="top">
+      <button ion-fab (click)="fabHelp()">
+        <ion-icon name="md-help"></ion-icon>
+      </button>
+      <button ion-fab (click)="importContacts()">
+        <ion-icon name="md-contacts"></ion-icon>
+      </button>
+      <button ion-fab (click)="selectAll=!selectAll">
+        <ion-icon name="md-checkbox"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

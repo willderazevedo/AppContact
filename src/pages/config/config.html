@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Configuração</ion-title>
+    <ion-buttons right *ngIf="url ? true : false">
+      <button ion-button (click)="goToList()">
+        CONFIRMAR
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header color="primary">
+      Preferências
+    </ion-card-header>
+    <hr no-margin>
+    <ion-card-content>
+      <ion-list>
+        <ion-item no-padding>
+          <ion-label stacked>URL da API</ion-label>
+          <ion-input type="url" placeholder="Digite ou cole aqui" [(ngModel)]="url"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
