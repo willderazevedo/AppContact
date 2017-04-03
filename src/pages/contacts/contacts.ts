@@ -40,7 +40,7 @@ export class ContactsPage {
 
           load.dismiss();
 
-          let alert = this.alertCtrl.create({
+          this.alertCtrl.create({
             title: "Atenção!",
             subTitle: "Erro na requisição dos contatos, API inválida!",
             buttons: [
