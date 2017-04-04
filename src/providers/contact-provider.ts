@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Contacts, Contact, ContactField, ContactName, ContactFindOptions } from '@ionic-native/contacts';
+import { Contacts, ContactField, ContactName, ContactFindOptions } from '@ionic-native/contacts';
 import 'rxjs/add/operator/map';
 import { AlertController, LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class ContactProvider {
+
+  success:boolean = false;
 
   constructor(public http: Http, public contacts: Contacts,
     public alertCtrl: AlertController, public loadCtrl: LoadingController) {}
@@ -16,14 +18,16 @@ export class ContactProvider {
 
   public importContacts(contacts) {
 
-    var status = 0;
-    var load   = this.loadCtrl.create({
+    var load    = this.loadCtrl.create({
       content: "Cadastrando contatos... ",
-      duration: 1500
     });
 
+    load.present();
+
     setTimeout(() => {
-      load.present();
+
+      //Remove if alredy exists
+      contacts = this.existingFilter(contacts);
 
       for(var i = 0; i < contacts.length; i++) {
 
@@ -32,20 +36,33 @@ export class ContactProvider {
         contact.phoneNumbers = [new ContactField('mobile', contacts[i].telefone)];
 
         contact.save()
-        .then(() => status++)
+        .then(() => console.log('Cadastrados com sucesso!'))
         .catch(err => console.log(err));
       }
 
       load.dismiss();
-      load.onDidDismiss(() => {
-        this.alertCtrl.create({
-          title: "Sucesso",
-          subTitle: "Contatos cadastrados com sucesso!",
-          buttons: ["Ok"]
-        }).present();
+      this.alertCtrl.create({
+        title: "Sucesso!",
+        subTitle: "Contatos cadastrados com sucesso",
+        buttons: ["Ok"]
+      }).present();
+    }, 1500);
+
+  }
+
+  private existingFilter(contacts) {
+
+    for(var i = 0; i < contacts.length; i++) {
+      var options = new ContactFindOptions();
+      options.filter = contacts[i].nome;
+
+      this.contacts.find(["name"], options).then((data) => {
+        if(data.length > 0)
+          contacts.splice(i);
       });
-    }, 100);
-    
+    }
+
+    return contacts;
   }
 
 }
