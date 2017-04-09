@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Configuração</ion-title>
-    <ion-buttons right *ngIf="url ? true : false">
+    <ion-buttons right *ngIf="file ? true : false">
       <button ion-button (click)="goToList()">
         CONFIRMAR
       </button>
@@ -18,10 +18,11 @@
     <ion-card-content>
       <ion-list>
         <ion-item no-padding>
-          <ion-label stacked>URL da API</ion-label>
-          <ion-input type="url" placeholder="Digite ou cole aqui" [(ngModel)]="url"></ion-input>
+          <ion-label stacked>Caminho do arquivo</ion-label>
+          <ion-input type="url" placeholder="Digite ou cole aqui" [(ngModel)]="file" disabled></ion-input>
         </ion-item>
       </ion-list>
+      <button ion-button full (click)="toggleModal()">Selecionar Arquivo</button>
     </ion-card-content>
   </ion-card>
 </ion-content>

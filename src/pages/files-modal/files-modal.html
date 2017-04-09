@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Arquivos</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="listFiles()">
+        <ion-icon name="md-home"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="modalDismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-item *ngFor="let file of files_list"
+  (click)="file.isDirectory ? listFiles(file.fullPath) : pickFile(file.nativeURL)">
+    <ion-icon name="md-folder" *ngIf="file.isDirectory"></ion-icon>
+    <ion-icon name="md-document" *ngIf="file.isFile"></ion-icon>
+    {{ file.name }}
+  </button>
+  <p ion-item *ngIf="files_list.length == 0">Nenhum arquivo aqui</p>
+</ion-content>

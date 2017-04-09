@@ -12,8 +12,32 @@ export class ContactProvider {
   constructor(public http: Http, public contacts: Contacts,
     public alertCtrl: AlertController, public loadCtrl: LoadingController) {}
 
-  public getContacts(api_url) {
-    return this.http.get(api_url).map(data => data.json());
+  public getFileName(file_uri) {
+    let file_name  = "";
+    let break_path = file_uri.split('');
+
+    for(var i = break_path.length - 1; i >= 0; i--) {
+      if(break_path[i] == "/")
+        break;
+
+      file_name = break_path[i] + file_name;
+    }
+
+    return file_name;
+  }
+
+  public getFilePath(file_uri) {
+    let file_path  = "";
+    let break_path = file_uri.split('');
+
+    for(var i = break_path.length - 1; i >= 0; i--) {
+      if(break_path[i] == "/"){
+        file_path = file_uri.substr(0, (i+1));
+        break;
+      }
+    }
+
+    return file_path;
   }
 
   public importContacts(contacts) {

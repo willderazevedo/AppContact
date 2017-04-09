@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { File } from '@ionic-native/file';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 //Providers
@@ -10,18 +11,18 @@ import { ContactProvider } from '../../providers/contact-provider';
 })
 export class ContactsPage {
 
-  api_url    = this.navParams.get('url');
+  file_uri   = this.navParams.get('file');
   selectAll  = false;
   contacts   = [];
   import     = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public loadCtrl: LoadingController, public alertCtrl: AlertController,
-  public provider: ContactProvider) {
-    this.getContacts();
+  public provider: ContactProvider, public file: File) {
+    this.readFile();
   }
 
-  public getContacts() {
+  public readFile() {
 
     let load = this.loadCtrl.create({
       content: "Carregando contatos...",
@@ -31,29 +32,30 @@ export class ContactsPage {
 
     setTimeout(() => {
 
-      this.provider.getContacts(this.api_url).subscribe(
-        data => {
-          this.contacts = data;
-          load.dismiss();
-        },
-        err => {
+      //Separate URIs parameters
+      let file_name   = this.provider.getFileName(this.file_uri);
+      let file_path   = this.provider.getFilePath(this.file_uri);
 
-          load.dismiss();
-
-          this.alertCtrl.create({
-            title: "Atenção!",
-            subTitle: "Erro na requisição dos contatos, API inválida!",
-            buttons: [
-              {
-                text: "Voltar",
-                handler: () => {
-                  this.navCtrl.pop();
-                }
+      //Instance contacts
+      this.file.readAsText(file_path, file_name)
+      .then(data => {
+        this.contacts = JSON.parse(data);
+        load.dismiss();
+      }).catch(err => {
+        load.dismiss();
+        this.alertCtrl.create({
+          title: "Atenção!",
+          subTitle: "Erro na requisição dos contatos, arquivo inválido!",
+          buttons: [
+            {
+              text: "Voltar",
+              handler: () => {
+                this.navCtrl.pop();
               }
-            ]
-          }).present();
-        }
-      );
+            }
+          ]
+        }).present();
+      });
     }, 1500);
   }
 
