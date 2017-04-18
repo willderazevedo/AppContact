@@ -20,7 +20,7 @@ export class FilesModalPage {
    * Caminho padrão para listagem dos diretórios e arquivos.
    * @var {string}
    */
-  storage_uri = "file:///storage/emulated/";
+  storage_uri = "file:///storage/emulated/0/";
 
   /**
    * Construtor reponsável por instaciar as dependências da modal.
