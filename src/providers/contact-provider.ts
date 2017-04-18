@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Contacts, ContactField, ContactName, ContactFindOptions } from '@ionic-native/contacts';
 import 'rxjs/add/operator/map';
 import { AlertController, LoadingController } from 'ionic-angular';
@@ -9,10 +8,22 @@ export class ContactProvider {
 
   success:boolean = false;
 
-  constructor(public http: Http, public contacts: Contacts,
+  /**
+   * Construtor da classe onde será instanciada as classes importadas.
+   * @param  {Contacts}          contacts  Biblioteca nativa para manipulação dos contatos no dispositivo.
+   * @param  {AlertController}   alertCtrl Controlador de chamada de um alerta.
+   * @param  {LoadingController} loadCtrl Controlador de chamada de um alerta do tipo carregamento.
+   * @return {void}
+   */
+  constructor(public contacts: Contacts,
     public alertCtrl: AlertController, public loadCtrl: LoadingController) {}
 
-  public getFileName(file_uri) {
+  /**
+   * Método responsável por separar o nome do arquivo do caminho do mesmo.
+   * @param  {string} file_uri Caminho completo do arquivo juntamente com o nome.
+   * @return {string}          Nome do arquivo como retorno.
+   */
+  public getFileName(file_uri: string) {
     let file_name  = "";
     let break_path = file_uri.split('');
 
@@ -26,7 +37,12 @@ export class ContactProvider {
     return file_name;
   }
 
-  public getFilePath(file_uri) {
+  /**
+   * Método responsável por separar o caminho do arquivo do nome.
+   * @param  {string} file_uri Caminho completo do arquivo juntamente com o nome.
+   * @return {string}          Caminho do arquivo como retorno
+   */
+  public getFilePath(file_uri: string) {
     let file_path  = "";
     let break_path = file_uri.split('');
 
@@ -40,7 +56,12 @@ export class ContactProvider {
     return file_path;
   }
 
-  public importContacts(contacts) {
+  /**
+   * Método responsável por importar os contatos para a lista telefônica do aparelho.
+   * @param  {any}    contacts Lista de contatos selecionados
+   * @return {void}
+   */
+  public importContacts(contacts: any) {
 
     var load    = this.loadCtrl.create({
       content: "Cadastrando contatos... ",
@@ -50,10 +71,10 @@ export class ContactProvider {
 
     setTimeout(() => {
 
-      //Remove if alredy exists
+      //Remover contatos existentes
       contacts = this.existingFilter(contacts);
 
-      for(var i = 0; i < contacts.length; i++) {
+      for(let i = 0; i < contacts.length; i++) {
 
         let contact          = this.contacts.create();
         contact.name         = new ContactName(null, contacts[i].nome);
@@ -74,10 +95,15 @@ export class ContactProvider {
 
   }
 
-  private existingFilter(contacts) {
+  /**
+   * Método responsável por retirar da lista contatos que ja existem no aparelho.
+   * @param  {any}    contacts Lista de contatos a ser filtrada.
+   * @return {any}          Retorno da nova lista após o filtro.
+   */
+  private existingFilter(contacts: any) {
 
     for(var i = 0; i < contacts.length; i++) {
-      var options = new ContactFindOptions();
+      let options    = new ContactFindOptions();
       options.filter = contacts[i].nome;
 
       this.contacts.find(["name"], options).then((data) => {

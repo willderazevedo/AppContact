@@ -41,6 +41,8 @@
     "cordova-plugin-device",
     "cordova-plugin-statusbar",
     "cordova-plugin-splashscreen",
+    "cordova-plugin-file",
+    "cordova-plugin-contacts",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
