@@ -1,6 +1,10 @@
 # AppContact #
 Este README tem como objetivo mostrar os padrões e auxiliar o usuário.
 
+### Como baixar o AppContact? ###
+* App contact poderá ser baixado através deste link:
+[a link](https://drive.google.com/drive/folders/0Bxl_FV2ytgHiVWtseVdDeEVpU2c?usp=sharing)
+
 ### Qual o padrão de JSON a se seguir? ###
 
 *Este deve ser o padrão a ser seguido:
