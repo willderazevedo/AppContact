@@ -83,7 +83,7 @@ export class ContactsPage {
   public navBarHelp() {
     return this.alertCtrl.create({
       title: "Tutorial",
-      subTitle: "Olá, você pode apertar na primeira seta para voltar a escolha da API e na " +
+      subTitle: "Olá, você pode apertar na primeira seta para voltar a escolha do arquivo e na " +
                 "segunda seta, essa bem ao meu lado, para atualizar os contatos ou aperte na bolinha " +
                 "vermelha para mais opções.",
       buttons:["Entendi"]

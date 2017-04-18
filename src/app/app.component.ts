@@ -18,6 +18,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.hideSplashScreen(splashScreen);
     });
+  }
+
+  private hideSplashScreen(splashScreen) {
+    setTimeout(() => {
+      splashScreen.hide();
+    }, 100);
   }
 }
