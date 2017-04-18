@@ -3,7 +3,7 @@ Este README tem como objetivo mostrar os padrões e auxiliar o usuário.
 
 ### Como baixar o AppContact? ###
 * App contact poderá ser baixado através deste link:
-[AppContact](https://drive.google.com/drive/folders/0Bxl_FV2ytgHiVWtseVdDeEVpU2c?usp=sharing){:target="_blank"}
+<a href="https://drive.google.com/drive/folders/0Bxl_FV2ytgHiVWtseVdDeEVpU2c?usp=sharing" target="_blank">AppContact</a>
 
 ### Qual o padrão de JSON a se seguir? ###
 
