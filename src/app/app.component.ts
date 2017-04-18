@@ -12,17 +12,27 @@ import { ConfigPage } from '../pages/config/config';
 export class MyApp {
   rootPage:any = ConfigPage;
 
+  /**
+   * Construtor da classe principal da aplicação
+   * @param  {Platform}     platform     Biblioteca nativa nela contém todas as informações da plataforma e suas ações.
+   * @param  {StatusBar}    statusBar    Biblioteca nativa nela contém todas as configurações da barra do topo.
+   * @param  {SplashScreen} splashScreen Biblioteca nativa responsável pela tela de splash ou tela de entrada.
+   * @return {void}
+   */
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
       this.hideSplashScreen(splashScreen);
     });
   }
 
-  private hideSplashScreen(splashScreen) {
+  /**
+   * Método responsável por corrigir o erro da splash screen sumir antes do tempo
+   * @param  {SplashScreen} splashScreen Biblioteca nativa responsável pela tela de splash ou tela de entrada.
+   * @return {void}
+   */
+  private hideSplashScreen(splashScreen: SplashScreen) {
     setTimeout(() => {
       splashScreen.hide();
     }, 100);

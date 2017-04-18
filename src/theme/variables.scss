@@ -23,6 +23,10 @@ $font-path: "../assets/fonts";
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+/**
+ * Variavéis usadas no tema.
+ * @type {array}
+ */
 $colors: (
   primary:    #00796b,
   secondary:  #0096a6,
