@@ -12,13 +12,13 @@ export class FilesModalPage {
 
   /**
    * Lista de diretórios e arquivos.
-   * @var {array}
+   * @var {array} files_list
    */
   files_list  = [{name: "Carregando..."}];
 
   /**
    * Caminho padrão para listagem dos diretórios e arquivos.
-   * @var {string}
+   * @var {string} storage_uri
    */
   storage_uri = "file:///storage/emulated/0/";
 

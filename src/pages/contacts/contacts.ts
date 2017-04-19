@@ -127,6 +127,17 @@ export class ContactsPage {
    * @return {void}
    */
   public importContacts(){
+
+    if(this.import.length <= 0){
+      this.alertCtrl.create({
+        title: "Atenção!",
+        message: "Nenhum contato selecionado, por favor escolha pelo menos um!",
+        buttons: ["Entendi"]
+      }).present();
+
+      return false;
+    }
+
     this.provider.importContacts(this.import);
   }
 

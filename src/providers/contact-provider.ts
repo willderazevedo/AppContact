@@ -6,8 +6,6 @@ import { AlertController, LoadingController } from 'ionic-angular';
 @Injectable()
 export class ContactProvider {
 
-  success:boolean = false;
-
   /**
    * Construtor da classe onde será instanciada as classes importadas.
    * @param  {Contacts}          contacts  Biblioteca nativa para manipulação dos contatos no dispositivo.
@@ -15,8 +13,8 @@ export class ContactProvider {
    * @param  {LoadingController} loadCtrl Controlador de chamada de um alerta do tipo carregamento.
    * @return {void}
    */
-  constructor(public contacts: Contacts,
-    public alertCtrl: AlertController, public loadCtrl: LoadingController) {}
+  constructor(public contacts: Contacts, public alertCtrl: AlertController,
+    public loadCtrl: LoadingController) {}
 
   /**
    * Método responsável por separar o nome do arquivo do caminho do mesmo.
@@ -63,36 +61,36 @@ export class ContactProvider {
    */
   public importContacts(contacts: any) {
 
-    var load    = this.loadCtrl.create({
+    var msg  = "";
+    var load = this.loadCtrl.create({
       content: "Cadastrando contatos... ",
     });
 
     load.present();
 
-    setTimeout(() => {
+    //Remover contatos existentes
+    contacts = this.existingFilter(contacts);
 
-      //Remover contatos existentes
-      contacts = this.existingFilter(contacts);
+    for(let i = 0; i < contacts.length; i++) {
 
-      for(let i = 0; i < contacts.length; i++) {
+      let contact          = this.contacts.create();
+      contact.name         = new ContactName(null, contacts[i].nome);
+      contact.phoneNumbers = [new ContactField('mobile', contacts[i].telefone)];
 
-        let contact          = this.contacts.create();
-        contact.name         = new ContactName(null, contacts[i].nome);
-        contact.phoneNumbers = [new ContactField('mobile', contacts[i].telefone)];
-
-        contact.save()
-        .then(() => console.log('Cadastrados com sucesso!'))
-        .catch(err => console.log(err));
+      try{
+        contact.save();
+        msg = "Contatos cadastrados com sucesso.";
+      }catch(err){
+        msg = "Erro ao cadastrar contatos";
       }
+    }
 
-      load.dismiss();
-      this.alertCtrl.create({
-        title: "Sucesso!",
-        subTitle: "Contatos cadastrados com sucesso",
-        buttons: ["Ok"]
-      }).present();
-    }, 1500);
-
+    load.dismiss();
+    this.alertCtrl.create({
+      title: "Resultado",
+      message: msg,
+      buttons: ["Ok"]
+    }).present();
   }
 
   /**
