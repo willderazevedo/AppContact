@@ -1,13 +1,42 @@
 # AppContact #
 Este README tem como objetivo mostrar os padrões e auxiliar o usuário.
 
+### Como instalar o projeto? ###
+
+* 1° - passo: Baixe o projeto ou clone-o em sua maquina, para clona-lo faça o sequinte comando em seu prompt
+
+```
+git clone https://github.com/willderazevedo/AppContact.git AppContact
+
+```
+
+* 2° - passo: Entre na pasta do projeto e instale as dependências seguindo os comandos
+
+```
+# 1° comando
+npm install
+
+# 2° comando
+npm install --only=dev
+
+# 3° comando
+ionic serve
+
+# 4° comando
+ionic state restore
+
+```
+
+* OBS: Antes de todos esses passos certifique-se de ter o ionic e o cordova instalados
+
 ### Como baixar o AppContact? ###
+
 * App contact poderá ser baixado através deste link:
 [AppContact](https://drive.google.com/drive/folders/0Bxl_FV2ytgHiVWtseVdDeEVpU2c?usp=sharing)
 
 ### Qual o padrão de JSON a se seguir? ###
 
-*Este deve ser o padrão a ser seguido:
+Este deve ser o padrão a ser seguido:
 
 ```
 [
@@ -32,7 +61,7 @@ Este README tem como objetivo mostrar os padrões e auxiliar o usuário.
 
 * Willder Azevedo Pessoa
 * Márcio da Silva Santos
-* Renan Oliveira Bessa 
-* Jean dos Santos 
+* Renan Oliveira Bessa
+* Jean dos Santos
 * Francisco Leandro Coutinho
 * Fábio Patrício Araújo
