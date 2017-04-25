@@ -27,7 +27,7 @@ ionic state restore
 
 ```
 
-* OBS: Antes de todos esses passos certifique-se de ter o ionic e o cordova instalados
+* OBS: Antes de todos esses passos certifique-se de ter o ionic e o cordova instalados: [Como instalar](https://github.com/willderazevedo/Tutorial-de-Instalacao-do-Ionic-2)
 
 ### Como baixar o AppContact? ###
 
