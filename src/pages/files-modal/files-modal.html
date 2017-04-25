@@ -2,9 +2,6 @@
   <ion-navbar color="primary">
     <ion-title>Arquivos</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only (click)="listFiles()">
-        <ion-icon name="md-home"></ion-icon>
-      </button>
       <button ion-button icon-only (click)="modalDismiss()">
         <ion-icon name="md-close"></ion-icon>
       </button>
@@ -20,4 +17,10 @@
     {{ file.name }}
   </button>
   <p ion-item *ngIf="files_list.length == 0">Nenhum arquivo aqui</p>
+
+  <ion-fab bottom right>
+    <button ion-fab icon-only (click)="listFiles()">
+      <ion-icon name="md-home"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
